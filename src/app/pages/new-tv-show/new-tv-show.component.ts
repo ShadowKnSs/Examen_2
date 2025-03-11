@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TvShowsService } from '../../services/tv-shows.service';
 
 @Component({
   selector: 'app-new-tv-show',
@@ -8,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class NewTvShowComponent {
 
+  title: string = "";
+
+  constructor(private tvShowsService: TvShowsService) {
+    this.tvShowsService.title = "Valor del servicio editado desde new tv show"
+    this.title = this.tvShowsService.title;
+
+    console.log(this.tvShowsService.shows);
+  }
 }
