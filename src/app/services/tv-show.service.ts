@@ -4,11 +4,9 @@ import { Show } from '../interfaces/show.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class TvShowsService {
+export class TvShowService {
 
-  title: string = "Hola mundo desde mi TvShowsService editado";
-
-  shows: Show[] = [{
+  private _shows: Show[] = [{
     "name": "Game of Thrones",
     "image": "https://m.media-amazon.com/images/M/MV5BN2IzYzBiOTQtNGZmMi00NDI5LTgxMzMtN2EzZjA1NjhlOGMxXkEyXkFqcGdeQXVyNjAwNDUxODI@._V1_.jpg",
     "description": "",
@@ -35,7 +33,41 @@ export class TvShowsService {
   }
   ]
 
+  private _querySearch = "";
+
+  get shows(): Show[] {
+    return [...this._shows];
+  }
+
+  get filteredShows(): Show[] {
+    return this._querySearch
+      ? this.shows.filter(show => show.name.toLocaleLowerCase().includes(this._querySearch))
+      : this.shows;
+  }
+
+  set querySearch(value: string) {
+    this._querySearch = value;
+  }
+
   constructor() {
 
+  }
+
+  deleteByIndex(index: number): void {
+    this._shows.splice(index, 1);
+  }
+
+  deleteLast(): void {
+    this._shows.pop();
+  }
+
+  orderByName(): void {
+    this._shows.sort((a, b) => a.name.localeCompare(b.name));
+  }
+
+  deleteByName(name: string): void {
+    const index = this._shows.findIndex(show => show.name === name);
+    if (index != -1)
+      this.deleteByIndex(index);
   }
 }

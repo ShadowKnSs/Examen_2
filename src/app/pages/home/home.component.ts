@@ -3,37 +3,47 @@ import { ShowCardComponent } from '../../components/show-card/show-card.componen
 import { ControlsComponent } from '../../components/controls/controls.component';
 import { Show } from '../../interfaces/show.interface';
 import { CommonModule } from '@angular/common';
-import { TvShowsService } from '../../services/tv-shows.service';
+import { TvShowService } from '../../services/tv-show.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-home',
-  imports: [ShowCardComponent, ControlsComponent, CommonModule],
+  imports: [ShowCardComponent, ControlsComponent, CommonModule, MatButtonModule, MatInputModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  title: string = "";
 
-  constructor(public tvShowsService: TvShowsService) {
-    this.title = this.tvShowsService.title;
+  shows: Show[] = [];
+
+  constructor(private tvShowsService: TvShowService) {
+    this.shows = this.tvShowsService.shows;
   }
 
   deleteByIndex(index: number): void {
-    this.tvShowsService.shows.splice(index, 1);
+    this.tvShowsService.deleteByIndex(index);
+    this.shows = this.tvShowsService.shows;
   }
 
   deleteLast(): void {
-    this.tvShowsService.shows.pop();
+    this.tvShowsService.deleteLast();
+    this.shows = this.tvShowsService.shows;
   }
 
   orderByName(): void {
-    this.tvShowsService.shows.sort((a, b) => a.name.localeCompare(b.name));
+    this.tvShowsService.orderByName();
+    this.shows = this.tvShowsService.shows;
   }
 
   deleteByName(name: string): void {
-    const index = this.tvShowsService.shows.findIndex(show => show.name === name);
-    if (index != -1)
-      this.deleteByIndex(index);
+    this.tvShowsService.deleteByName(name);
+    this.shows = this.tvShowsService.shows;
+  }
+
+  onSearch(): void {
+    this.tvShowsService.querySearch = "game";
+    this.shows = this.tvShowsService.filteredShows;
   }
 
 }
