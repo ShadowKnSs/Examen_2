@@ -12,3 +12,7 @@ a {
 .active {
     background-color: aqua;
 }
+
+.page-container {
+    padding: 0 15px;
+}

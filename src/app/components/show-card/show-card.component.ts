@@ -14,12 +14,8 @@ export class ShowCardComponent {
   @Output()
   onDeleteEvent = new EventEmitter<string>();
 
-  @Input()
-  show: Show = {
-    name: "",
-    image: "",
-    description: "",
-  }
+  @Input({ required: true })
+  show: Show | null = null;
 
   isSelected: boolean = false;
 
@@ -28,7 +24,7 @@ export class ShowCardComponent {
   }
 
   onDelete(): void {
-    this.onDeleteEvent.emit(this.show.name);
+    this.onDeleteEvent.emit(this.show!.name);
   }
 
 }

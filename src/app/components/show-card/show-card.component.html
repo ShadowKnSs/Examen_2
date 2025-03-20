@@ -9,12 +9,12 @@
 
 <mat-card class="card-container" [ngClass]="{'selected': isSelected}" appearance="outlined">
     <mat-card-header>
-        <mat-card-title>{{show.name}}</mat-card-title>
+        <mat-card-title>{{show!.name}}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image [src]="show.image" alt="Photo of a Shiba Inu">
+    <img mat-card-image [src]="show!.image" alt="Photo of a Shiba Inu">
     <mat-card-content>
         <p>
-            {{show.description != "" ? show.description : "Sin descripción"}}
+            {{show!.description != "" ? show!.description : "Sin descripción"}}
         </p>
     </mat-card-content>
     <mat-card-actions>

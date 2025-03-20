@@ -2,7 +2,7 @@
 
 
 <mat-form-field>
-    <input matInput placeholder="Nombre" required />
+    <input matInput placeholder="Nombre" required [(ngModel)]="querySearch" />
 </mat-form-field>
 <button (click)="onSearch()" mat-raised-button>Buscar</button>
 
