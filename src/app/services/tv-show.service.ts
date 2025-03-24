@@ -190,4 +190,8 @@ export class TvShowService {
     if (index != -1)
       this.deleteByIndex(index);
   }
+
+  createNewTvShow(show: Show): void {
+    this._shows.push(show);
+  }
 }
