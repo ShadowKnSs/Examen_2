@@ -1,4 +1,4 @@
-<form #form="ngForm" (ngSubmit)="createNewTvShow(form)">
+<!-- <form #form="ngForm" (ngSubmit)="createNewTvShow(form)">
     <h1>Crear nuevo tv show</h1>
     <mat-form-field>
         <mat-label>Nombre</mat-label>
@@ -13,10 +13,29 @@
         <input name="image" required ngModel matInput>
     </mat-form-field>
     <button type="submit" mat-raised-button>Crear</button>
-    <!-- <div *ngIf="!form.valid && form.submitted" style="color: red;">
-        Datos incompletos
-    </div> -->
     @if(!form.valid && form.submitted){
+    <div style="color: red;">
+        Datos incompletos
+    </div>
+    }
+</form> -->
+
+<form [formGroup]="form" (ngSubmit)="createNewTvShow()">
+    <h1>Crear nuevo tv show</h1>
+    <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input formControlName="name" matInput>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Descripción</mat-label>
+        <textarea formControlName="description" matInput></textarea>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Imagen</mat-label>
+        <input formControlName="image" matInput>
+    </mat-form-field>
+    <button type="submit" mat-raised-button>Crear</button>
+    @if(!form.valid && formSubmitted){
     <div style="color: red;">
         Datos incompletos
     </div>
