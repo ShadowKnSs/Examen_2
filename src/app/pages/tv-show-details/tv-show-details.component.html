@@ -1,9 +1,9 @@
-<ng-container *ngIf="show">
-    <h1>{{ show?.name }}</h1>
-    <img [src]="show?.image" alt="{{ show?.name }}" style="width: 400px;">
-    <p><strong>Descripción:</strong> {{ show?.description }}</p>
-    <p><strong>Año:</strong> {{ show?.year }}</p>
-    <p><strong>Episodios:</strong> {{ show?.episodes }}</p>
-    <p><strong>Género:</strong> {{ show?.genre }}</p>
+<ng-container *ngIf="show as s">
+    <h1>{{ s.name }}</h1>
+    <img [src]="s.image" alt="{{ s.name }}" style="width:400px">
+    <p><strong>Descripción:</strong> {{ s.description }}</p>
+    <p><strong>Año:</strong> {{ s.year }}</p>
+    <p><strong>Episodios:</strong> {{ s.episodes }}</p>
+    <p><strong>Género:</strong> {{ s.genre }}</p>
   </ng-container>
   
