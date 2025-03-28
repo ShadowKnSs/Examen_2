@@ -9,9 +9,17 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-new-tv-show',
-  imports: [MatInputModule, MatFormFieldModule, MatButtonModule, FormsModule, ReactiveFormsModule],
+  standalone: true,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
+  ],
   templateUrl: './new-tv-show.component.html',
-  styleUrl: './new-tv-show.component.css'
+  styleUrls: ['./new-tv-show.component.css']
 })
 export class NewTvShowComponent {
   form: FormGroup;
@@ -22,6 +30,9 @@ export class NewTvShowComponent {
       name: new FormControl("", [Validators.required]),
       description: new FormControl("", [Validators.required]),
       image: new FormControl("", [Validators.required]),
+      year: new FormControl("", [Validators.required]),
+      episodes: new FormControl("", [Validators.required]),
+      genre: new FormControl("", [Validators.required]),
     })
   }
 
@@ -32,10 +43,10 @@ export class NewTvShowComponent {
         description: this.form.value.description,
         image: this.form.value.image,
         name: this.form.value.name,
-        episodes: 0,
-        genre: "",
+        episodes: this.form.value.episodes,
+        genre: this.form.value.genre,
         likes: [],
-        year: 0
+        year: this.form.value.year
       }
       this.tvShowService.createNewTvShow(newTvShow);
       this.form.reset();

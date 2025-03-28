@@ -11,7 +11,9 @@
     <mat-card-header>
         <mat-card-title>{{show!.name}}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image [src]="show!.image" alt="Photo of a Shiba Inu">
+    <a [routerLink]="['/tv-show-details', show!.name]">
+        <img mat-card-image [src]="show!.image" alt="{{show!.name}}">
+      </a>
     <mat-card-content>
         <p>
             {{show!.description != "" ? show!.description : "Sin descripción"}}

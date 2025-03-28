@@ -34,6 +34,18 @@
         <mat-label>Imagen</mat-label>
         <input formControlName="image" matInput>
     </mat-form-field>
+    <mat-form-field>
+        <mat-label>Año</mat-label>
+        <input type="number" formControlName="year" matInput>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Episodios</mat-label>
+        <input type="number" formControlName="episodes" matInput>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Género</mat-label>
+        <input formControlName="genre" matInput>
+      </mat-form-field>
     <button type="submit" mat-raised-button>Crear</button>
     @if(!form.valid && formSubmitted){
     <div style="color: red;">

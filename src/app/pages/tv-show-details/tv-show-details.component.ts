@@ -1,16 +1,26 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TvShowService } from '../../services/tv-show.service';
+import { Show } from '../../interfaces/show.interface';
 
 @Component({
   selector: 'app-tv-show-details',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './tv-show-details.component.html',
   styleUrl: './tv-show-details.component.css'
 })
 export class TvShowDetailsComponent {
-  showName: string = "";
+  show: Show | null = null;
 
-  constructor(private route: ActivatedRoute){
-    this.showName = this.route.snapshot.paramMap.get("name") || "";
+  constructor(private route: ActivatedRoute, private tvShowService: TvShowService, private router: Router) {
+    const name = this.route.snapshot.paramMap.get("name") || "";
+    const result = this.tvShowService.shows.find(s => s.name === name);
+    if (!result) {
+      this.router.navigate(['/not-found']);
+    } else {
+      this.show = result;
+    }
   }
 }

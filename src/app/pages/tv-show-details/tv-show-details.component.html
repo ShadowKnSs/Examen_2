@@ -1,1 +1,9 @@
-<p>Detalles del programa {{showName}}</p>
+<ng-container *ngIf="show">
+    <h1>{{ show?.name }}</h1>
+    <img [src]="show?.image" alt="{{ show?.name }}" style="width: 400px;">
+    <p><strong>Descripción:</strong> {{ show?.description }}</p>
+    <p><strong>Año:</strong> {{ show?.year }}</p>
+    <p><strong>Episodios:</strong> {{ show?.episodes }}</p>
+    <p><strong>Género:</strong> {{ show?.genre }}</p>
+  </ng-container>
+  
